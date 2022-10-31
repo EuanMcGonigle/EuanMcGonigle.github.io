@@ -17,7 +17,7 @@ author_profile: true
 
 ## Journal Articles
 
-- E. T. McGonigle, H. Cho (2022). Robust multiscale estimation of time-average variance for time series segmentation. *Computational Statistics and Data Analysis* (to appear) [[Open Access link]]([https://arxiv.org/abs/2205.11496](https://doi.org/10.1016/j.csda.2022.107648)) [[Link to code on Github]](https://github.com/EuanMcGonigle/TAVC.seg).
+- E. T. McGonigle, H. Cho (2022). Robust multiscale estimation of time-average variance for time series segmentation. *Computational Statistics and Data Analysis* (to appear) [[Open Access link]](https://doi.org/10.1016/j.csda.2022.107648) [[Link to code on Github]](https://github.com/EuanMcGonigle/TAVC.seg).
 
 - E. T. McGonigle, R. Killick, M. A. Nunes (2022). Modelling time-varying first and second-order structure of time series via wavelets and differencing. *Electronic Journal of Statistics* **16** (2):4398-4448. [[Open Access link]](https://doi.org/10.1214/22-EJS2044)   [[Link to code on Github]](https://github.com/EuanMcGonigle/TrendLSW).
 
