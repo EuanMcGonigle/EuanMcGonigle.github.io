@@ -30,3 +30,9 @@ author_profile: true
 ## PhD Thesis 
 
 - E. T. McGonigle (2020). Wavelet Methods for Locally Stationary Time Series, Lancaster University, 2020. [[pdf]](https://eprints.lancs.ac.uk/id/eprint/150108/1/2020mcgoniglephd.pdf)
+
+## Software
+
+- E. T. McGonigle, R. Killick, M. A. Nunes (2024). TrendLSW: Wavelet methods for analysing locally stationary time series. [[Link to R package on CRAN]](https://CRAN.R-project.org/package=TrendLSW).
+
+- E. T. McGonigle, H. Cho (2023). CptNonPar: Nonparametric change point detection for multivariate time series. [[Link to R package on CRAN]](https://CRAN.R-project.org/package=CptNonPar).
