@@ -13,6 +13,8 @@ author_profile: true
 
 ## Preprints
 
+- E. T. McGonigle, R. Killick, M. A. Nunes (2024). TrendLSW: Trend and Spectral Estimation of Nonstationary Time Series in R. [[ArXiv link]](https://https://arxiv.org/abs/2406.05012) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=TrendLSW).
+
 - E. T. McGonigle, H. Cho (2023) Nonparametric data segmentation in multivariate time series via joint characteristic functions. [[ArXiv link]](https://arxiv.org/abs/2305.07581) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=CptNonPar).
 
 - E. T. McGonigle, H. Peng (2021). Subspace Change-Point Detection via Low-Rank Matrix Factorisation. [[ArXiv link]](https://arxiv.org/abs/2110.04044).
