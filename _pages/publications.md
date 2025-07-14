@@ -13,7 +13,7 @@ author_profile: true
 
 ## Journal Articles
 
-- E. T. McGonigle, H. Cho (2025+) Nonparametric data segmentation in multivariate time series via joint characteristic functions. *Biometrika* (to appear) [[ArXiv link]](https://arxiv.org/abs/2305.07581) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=CptNonPar).
+- E. T. McGonigle, H. Cho (2025) Nonparametric data segmentation in multivariate time series via joint characteristic functions. *Biometrika* 112(2): asaf024  [[Open Access link]](https://academic.oup.com/biomet/article/112/2/asaf024/8102811) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=CptNonPar).
 
 - E. T. McGonigle, R. Killick, M. A. Nunes (2024+). TrendLSW: Trend and Spectral Estimation of Nonstationary Time Series in R. *Journal of Statistical Software* (to appear) [[ArXiv link]](https://arxiv.org/abs/2406.05012) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=TrendLSW).
 
