@@ -27,6 +27,8 @@ author_profile: true
 
 ## Preprints
 
+- E. T. McGonigle, M. Pawley, J. Richards, and C. Rohrbeck (2025). MOPED: A moving sum method for change point detection in pairwise extremal dependence. [[ArXiv link]](https://arxiv.org/abs/2509.00585). [[Link to code on Github]](https://github.com/EuanMcGonigle/moped).
+
 - E. T. McGonigle, H. Peng (2021). Subspace Change-Point Detection via Low-Rank Matrix Factorisation. [[ArXiv link]](https://arxiv.org/abs/2110.04044).
 
 ## PhD Thesis 
