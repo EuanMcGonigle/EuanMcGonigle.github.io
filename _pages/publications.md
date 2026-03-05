@@ -13,6 +13,8 @@ author_profile: true
 
 ## Journal Articles
 
+- E. T. McGonigle, M. Pawley, J. Richards, and C. Rohrbeck (2025). MOPED: A moving sum method for change point detection in pairwise extremal dependence. *Extremes* (to appear) [[ArXiv link]](https://arxiv.org/abs/2509.00585). [[Link to code on Github]](https://github.com/EuanMcGonigle/moped).
+
 - E. T. McGonigle, R. Killick, M. A. Nunes (2026). TrendLSW: Trend and Spectral Estimation of Nonstationary Time Series in R. *Journal of Statistical Software* 115(10) [[Open Access link]](https://doi.org/10.18637/jss.v115.i10) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=TrendLSW).
 
 - E. T. McGonigle, H. Cho (2025) Nonparametric data segmentation in multivariate time series via joint characteristic functions. *Biometrika* 112(2): asaf024  [[Open Access link]](https://academic.oup.com/biomet/article/112/2/asaf024/8102811) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=CptNonPar).
@@ -26,8 +28,6 @@ author_profile: true
 - E. T. McGonigle, R. Killick, M. A. Nunes (2021). Detecting changes in mean in the presence of time-varying autocovariance. *Stat* **10** (1), e351.  [[Open Access link]](https://onlinelibrary.wiley.com/doi/10.1002/sta4.351).
 
 ## Preprints
-
-- E. T. McGonigle, M. Pawley, J. Richards, and C. Rohrbeck (2025). MOPED: A moving sum method for change point detection in pairwise extremal dependence. [[ArXiv link]](https://arxiv.org/abs/2509.00585). [[Link to code on Github]](https://github.com/EuanMcGonigle/moped).
 
 - E. T. McGonigle, H. Peng (2021). Subspace Change-Point Detection via Low-Rank Matrix Factorisation. [[ArXiv link]](https://arxiv.org/abs/2110.04044).
 
