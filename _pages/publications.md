@@ -13,7 +13,7 @@ author_profile: true
 
 ## Journal Articles
 
-- E. T. McGonigle, M. Pawley, J. Richards, and C. Rohrbeck (2026). MOPED: A moving sum method for change point detection in pairwise extremal dependence. *Extremes* (to appear) [[ArXiv link]](https://arxiv.org/abs/2509.00585). [[Link to code on Github]](https://github.com/EuanMcGonigle/moped).
+- E. T. McGonigle, M. Pawley, J. Richards, and C. Rohrbeck (2026). MOPED: A moving sum method for change point detection in pairwise extremal dependence. *Extremes* (to appear) [[Open Access link]](https://link.springer.com/article/10.1007/s10687-026-00534-x). [[Link to code on Github]](https://github.com/EuanMcGonigle/moped).
 
 - E. T. McGonigle, R. Killick, M. A. Nunes (2026). TrendLSW: Trend and Spectral Estimation of Nonstationary Time Series in R. *Journal of Statistical Software* 115(10) [[Open Access link]](https://doi.org/10.18637/jss.v115.i10) [[Link to R package on CRAN]](https://CRAN.R-project.org/package=TrendLSW).
 
