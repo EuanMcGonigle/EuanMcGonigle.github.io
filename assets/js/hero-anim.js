@@ -11,7 +11,7 @@
   var C = {};
   function readColors() {
     var cs = getComputedStyle(root);
-    ['bg', 'accent', 'hot', 'ink-3'].forEach(function (k) { C[k] = cs.getPropertyValue('--' + k).trim(); });
+    ['bg', 'accent', 'hot', 'ink', 'ink-3'].forEach(function (k) { C[k] = cs.getPropertyValue('--' + k).trim(); });
   }
   readColors();
   document.addEventListener('themechange', readColors);
@@ -66,15 +66,19 @@
       step: function (dt) { off += dt * .05; while (off >= STEP) { off -= STEP; push(); trim(); } },
       draw: function (now) {
         var n = ys.length, i;
-        var X = function (j) { return A.W - off - (n - 1 - j) * STEP; };
+        var right = A.W * .88; // newest observation sits here, leaving room to see the window's right edge
+        var X = function (j) { return right - off - (n - 1 - j) * STEP; };
         var mid = Y(.25), sc = (A.y1 - A.y0) * .22, sTop = Y(.55), sBot = Y(.98);
         var smax = Math.sqrt(Math.max(thr * 3, Math.max.apply(null, stat) * 1.1));
         var SY = function (v) { return sBot - Math.sqrt(Math.max(0, v)) / smax * (sBot - sTop); };
         var k = n - G; // centre of the newest statistic value
-        // moving window
-        ctx.fillStyle = rgba(C.accent, .07); ctx.fillRect(X(k - G), Y(0), X(n - 1) - X(k - G), sBot - Y(0));
-        ctx.strokeStyle = rgba(C.accent, .5); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(k), Y(0)); ctx.lineTo(X(k), sBot); ctx.stroke();
-        ctx.font = MONO; ctx.fillStyle = C['ink-3']; ctx.fillText('window', X(k - G) + 6, Y(0) + 12);
+        // moving window on the series: dashed edges at k - G and k + G, solid line at the current time k
+        var wTop = Y(0), wBot = Y(.5);
+        ctx.fillStyle = rgba(C.accent, .06); ctx.fillRect(X(k - G), wTop, X(n - 1) - X(k - G), wBot - wTop);
+        ctx.strokeStyle = C.accent; ctx.lineWidth = 2; ctx.setLineDash([6, 5]); ctx.beginPath();
+        ctx.moveTo(X(k - G), wTop); ctx.lineTo(X(k - G), wBot); ctx.moveTo(X(n - 1), wTop); ctx.lineTo(X(n - 1), wBot); ctx.stroke(); ctx.setLineDash([]);
+        ctx.strokeStyle = C.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(X(k), wTop); ctx.lineTo(X(k), wBot); ctx.stroke();
+        ctx.font = MONO; ctx.fillStyle = C['ink-3']; ctx.fillText('window', X(k - G) + 6, wTop + 12);
         // fitted mean between detections
         var segs = [], st = 0; for (i = 0; i < n; i++) if (det[i]) { segs.push([st, i]); st = i; } segs.push([st, k]);
         ctx.lineWidth = 2.6; ctx.strokeStyle = C.hot; ctx.beginPath();
@@ -92,6 +96,7 @@
         var first = true;
         for (i = 0; i < stat.length; i++) { var c = i + 1 - G; if (c < 0) continue; var yy = SY(stat[i]); first ? ctx.moveTo(X(c), yy) : ctx.lineTo(X(c), yy); first = false; }
         ctx.stroke(); ctx.lineTo(X(k), sBot); ctx.lineTo(X(0), sBot); ctx.fillStyle = rgba(C.accent, .1); ctx.fill();
+        var cur = SY(stat[stat.length - 1]); ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(X(k), cur, 3.5, 0, 7); ctx.fill();
         // detections
         for (i = 0; i < n; i++) if (det[i]) {
           var dx = X(i), age = Math.max(0, Math.min(1, (now - det[i].born) / 700));
