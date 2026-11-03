@@ -14,6 +14,10 @@ The main pages (home, publications, software, teaching) use the `modern` layout:
 | Styles (colours are CSS variables at the top) | `assets/css/modern.css` |
 | Animations, theme toggle, filters | `assets/js/modern.js` |
 
+### To do
+
+- **News strip on the homepage.** Three to five recent dated items (papers accepted, talks, new students), read from a `_data/news.yml` file with a date, short text and optional link for each, and shown newest first between About and Research. Optionally add a `/news/` page listing all items.
+
 ### Publication thumbnails
 
 Each paper can show a figure. Save it to `images/pubs/` (16:10, e.g. 1200×750 px, PNG or JPG) and add `image: /images/pubs/<name>.png` to its entry in `_data/publications.yml`. Optionally add `image_full:` pointing at a larger or uncropped version, which is shown when the thumbnail is clicked. From R, `source("tools/save_thumbnail.R")` and call `save_thumbnail(plot, "<name>")`, which takes a ggplot or a function that draws a base plot. Papers without an `image:` show no thumbnail.
