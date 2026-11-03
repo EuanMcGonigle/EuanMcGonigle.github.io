@@ -17,8 +17,8 @@ redirect_from:
   <div class="wrap">
     <div class="section__head section__head--row reveal">
       <div>
-        <p class="eyebrow">03 · Publications</p>
-        <h2>Recent papers</h2>
+        <h2 class="section__title">Publications</h2>
+        <p class="section__sub">Recent papers</p>
       </div>
       <a class="link-arrow" href="{{ '/publications/' | relative_url }}">All publications <span aria-hidden="true">→</span></a>
     </div>
@@ -30,8 +30,8 @@ redirect_from:
   <div class="wrap">
     <div class="section__head section__head--row reveal">
       <div>
-        <p class="eyebrow">04 · Software</p>
-        <h2>R packages &amp; code</h2>
+        <h2 class="section__title">Software</h2>
+        <p class="section__sub">R packages &amp; code</p>
       </div>
       <a class="link-arrow" href="{{ '/software/' | relative_url }}">More on software <span aria-hidden="true">→</span></a>
     </div>
@@ -42,8 +42,7 @@ redirect_from:
 <section class="section" id="teaching">
   <div class="wrap">
     <div class="section__head reveal">
-      <p class="eyebrow">05 · Teaching</p>
-      <h2>Teaching</h2>
+      <h2 class="section__title">Teaching</h2>
     </div>
     {% include modern/teaching.html %}
   </div>

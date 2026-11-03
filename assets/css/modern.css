@@ -257,6 +257,8 @@ code, pre { font-family: var(--mono); }
 .section--alt { background: var(--bg-alt); }
 .section__head { margin-bottom: 40px; }
 .section__head h2 { max-width: 24ch; }
+.section__title { font-size: clamp(2.6rem, 6.4vw, 4.4rem); letter-spacing: -.03em; line-height: 1; margin: 0; }
+.section__sub { margin: .7em 0 0; max-width: 42ch; color: var(--ink-2); font-size: clamp(1.05rem, 1.8vw, 1.3rem); line-height: 1.4; }
 .section__head--row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .link-arrow { font-weight: 500; white-space: nowrap; }
 .link-arrow span { display: inline-block; transition: transform .25s var(--ease); }
