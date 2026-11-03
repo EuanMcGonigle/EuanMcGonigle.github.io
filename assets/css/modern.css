@@ -230,6 +230,12 @@ code, pre { font-family: var(--mono); }
 .hero__scroll span { position: absolute; left: 50%; top: 7px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--ink-3); animation: scrolldot 1.8s var(--ease) infinite; }
 @keyframes scrolldot { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
 
+/* Homepage hero: content first, then a full-width animation strip (hero-anim.js). */
+.hero:has(.hero__band) { min-height: 0; display: block; padding: 120px 0 0; }
+.hero:has(.hero__band)::after { display: none; }
+.hero__band { position: relative; height: clamp(230px, 30vw, 360px); margin-top: clamp(28px, 4vw, 48px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.hero__band canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+@media (max-width: 860px) { .hero:has(.hero__band) { padding-top: 96px; } .hero__band { height: 200px; } }
 @media (max-width: 860px) {
   .hero { padding-top: 96px; }
   .hero__inner { grid-template-columns: 1fr; gap: 36px; }

@@ -18,7 +18,7 @@ The main pages (home, publications, software, teaching) use the `modern` layout:
 
 Each paper can show a figure. Save it to `images/pubs/` (16:10, e.g. 1200×750 px, PNG or JPG) and add `image: /images/pubs/<name>.png` to its entry in `_data/publications.yml`. Optionally add `image_full:` pointing at a larger or uncropped version, which is shown when the thumbnail is clicked. From R, `source("tools/save_thumbnail.R")` and call `save_thumbnail(plot, "<name>")`, which takes a ggplot or a function that draws a base plot. Papers without an `image:` show no thumbnail.
 
-The animated hero background is a simulated nonstationary time series with a fitted piecewise-constant mean and the detected change points marked.
+The homepage animation (`assets/js/hero-anim.js`) picks one of three at random on each visit: a live moving-sum change point detector, multivariate series with shared change points, or a scrolling wavelet spectrum. Add `#hero-detector`, `#hero-ribbons` or `#hero-wavelet` to the homepage URL to force one. All data is simulated. Sub-page headers keep the simpler scrolling series in `assets/js/modern.js`.
 
 ---
 
