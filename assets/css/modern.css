@@ -19,7 +19,7 @@
   --shadow-lg: 0 2px 4px rgba(20, 20, 30, .05), 0 24px 48px -20px rgba(20, 20, 30, .28);
   --nav-bg: rgba(247, 245, 240, .72);
 
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif: "Literata", Georgia, "Times New Roman", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -190,7 +190,7 @@ code, pre { font-family: var(--mono); }
     linear-gradient(to bottom, transparent 70%, var(--bg));
 }
 .hero__inner { display: grid; grid-template-columns: 1.35fr .9fr; gap: 56px; align-items: center; width: 100%; }
-.hero__title { font-size: clamp(2.8rem, 7.4vw, 5.4rem); font-weight: 600; letter-spacing: -.03em; line-height: 1; margin-bottom: .35em; }
+.hero__title { font-size: clamp(2.3rem, 5.6vw, 4.5rem); font-weight: 600; letter-spacing: -.025em; line-height: 1; margin-bottom: .35em; }
 .hero__lede { font-size: clamp(1.15rem, 2.1vw, 1.45rem); color: var(--ink-2); max-width: 32ch; min-height: 2.8em; line-height: 1.45; }
 .typer { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 62%, var(--accent-soft) 62%); }
 .typer__caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 2px; background: var(--accent); vertical-align: -.15em; animation: blink 1s steps(1) infinite; }
@@ -242,7 +242,7 @@ code, pre { font-family: var(--mono); }
 /* ---------- Page header (sub-pages) ---------- */
 .page-head { position: relative; padding: 96px 0 56px; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
 .page-head::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to right, var(--bg) 40%, color-mix(in srgb, var(--bg) 25%, transparent) 75%); }
-.page-head h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -.03em; }
+.page-head h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -.025em; }
 .page-head__lede { max-width: 60ch; color: var(--ink-2); font-size: 1.1rem; }
 
 /* ---------- Sections ---------- */
