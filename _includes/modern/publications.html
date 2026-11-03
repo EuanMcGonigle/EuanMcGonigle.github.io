@@ -29,7 +29,7 @@
         {% if p.image %}
         <div class="pub__thumb pub__thumb--img">
           <button type="button" data-lightbox="{{ p.image_full | default: p.image | relative_url }}" data-caption="{{ p.title | escape }}" aria-label="Enlarge figure from {{ p.title | escape }}">
-            <img src="{{ p.image | relative_url }}" alt="Figure from {{ p.title | escape }}" loading="lazy" width="720" height="450">
+            {% assign small = p.image | replace: '.jpg', '-480.jpg' %}<img src="{{ p.image | relative_url }}"{% if p.image contains '.jpg' %} srcset="{{ small | relative_url }} 480w, {{ p.image | relative_url }} 720w" sizes="(max-width: 640px) 260px, (max-width: 860px) 180px, 224px"{% endif %} alt="Figure from {{ p.title | escape }}" loading="lazy" width="720" height="450">
           </button>
         </div>
         {% else %}

@@ -62,13 +62,17 @@
   /* ---------- Nav: scrolled state, progress bar, active link ---------- */
   var nav = document.getElementById('nav');
   var progress = document.getElementById('nav-progress');
+  // Cache the scrollable height so the scroll handler never forces layout.
+  var scrollMax = 0;
+  function measure() { scrollMax = document.documentElement.scrollHeight - window.innerHeight; }
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
   function onScroll() {
     var y = window.scrollY;
     if (nav) nav.classList.toggle('is-scrolled', y > 8);
-    if (progress) {
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
-    }
+    if (progress) progress.style.transform = 'scaleX(' + (scrollMax > 0 ? Math.min(1, y / scrollMax) : 0) + ')';
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -381,7 +385,7 @@
   // Animate only when the canvas is on screen, the tab is visible and (for the
   // homepage hero) the screen is wide enough for the animation to be seen.
   function shouldRun() {
-    return !reduceMotion && onScreen && !document.hidden && !(isHero && W < 860);
+    return !reduceMotion && onScreen && !document.hidden && W >= 860;
   }
   function updateLoop() {
     if (shouldRun()) {

@@ -38,6 +38,8 @@
     };
     return s;
   }
+  var heatCache = {};
+  function heatColor(lv, L) { var k = C.accent + lv; return heatCache[k] || (heatCache[k] = rgba(C.accent, Math.min(1, (lv + .5) / L) * .9)); }
   var MONO = '500 11px "JetBrains Mono", ui-monospace, monospace';
   var A = { W: 0, H: 0, y0: 0, y1: 0 };
   function Y(f) { return A.y0 + f * (A.y1 - A.y0); }
@@ -172,10 +174,19 @@
       draw: function () {
         var i, j, gmax = 1e-9; for (i = 0; i < spec.length; i++) gmax = Math.max(gmax, spec[i].mx);
         var n = ys.length, x0 = -off, mid = Y(.2), sc = (A.y1 - A.y0) * .22, sTop = Y(.48), sH = A.y1 - sTop, rowH = sH / J;
+        // Quantise intensity into LEVELS bins and fill each bin as one path:
+        // a handful of fill() calls per frame instead of thousands of fillRect().
+        var LEVELS = 24, bins = [], lv;
+        for (lv = 0; lv < LEVELS; lv++) bins.push([]);
         for (i = 0; i < n; i++) for (j = 0; j < J; j++) {
           var a = Math.sqrt(spec[i].e[j] / gmax); if (a < .06) continue;
-          ctx.fillStyle = rgba(C.accent, Math.min(1, a) * .9);
-          ctx.fillRect(x0 + i * STEP, sTop + (J - 1 - j) * rowH, STEP + .6, rowH - 1);
+          bins[Math.min(LEVELS - 1, Math.floor(a * LEVELS))].push(i, j);
+        }
+        for (lv = 0; lv < LEVELS; lv++) {
+          var b = bins[lv]; if (!b.length) continue;
+          ctx.fillStyle = heatColor(lv, LEVELS); ctx.beginPath();
+          for (var q = 0; q < b.length; q += 2) ctx.rect(x0 + b[q] * STEP, sTop + (J - 1 - b[q + 1]) * rowH, STEP + .6, rowH - 1);
+          ctx.fill();
         }
         ctx.font = MONO; ctx.fillStyle = C['ink-3'];
         ctx.fillText('fine scales', A.W - 96, A.y1 - 4); ctx.fillText('coarse scales', A.W - 110, sTop + 12);
