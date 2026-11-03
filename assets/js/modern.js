@@ -373,19 +373,19 @@
 
   var lastT = 0;
   function frame(now) {
-    rafId = 0;
+    rafId = requestAnimationFrame(frame);
+    if (lastT && W < 860 && now - lastT < 30) return; // about 30 fps on small screens
     var dt = lastT ? Math.min(64, now - lastT) : 16;
     lastT = now;
     offset += dt * 0.045; // px per ms
     while (offset >= STEP) { offset -= STEP; series.shift(); series.push(nextPoint()); }
     draw(now);
-    rafId = requestAnimationFrame(frame);
   }
 
   // Animate only when the canvas is on screen, the tab is visible and (for the
   // homepage hero) the screen is wide enough for the animation to be seen.
   function shouldRun() {
-    return !reduceMotion && onScreen && !document.hidden && W >= 860;
+    return !reduceMotion && onScreen && !document.hidden;
   }
   function updateLoop() {
     if (shouldRun()) {

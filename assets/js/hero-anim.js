@@ -218,14 +218,19 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); anim.resize();
   }
   function draw(now) { ctx.clearRect(0, 0, A.W, A.H); anim.draw(now); }
-  function shouldRun() { return !reduce && onScreen && !document.hidden && A.W >= 860; }
-  function frame(now) { raf = 0; var dt = last ? Math.min(50, now - last) : 16; last = now; anim.step(dt); draw(now); raf = requestAnimationFrame(frame); }
+  function shouldRun() { return !reduce && onScreen && !document.hidden; }
+  // On small screens draw at about 30 fps to save battery; motion speed is unchanged.
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    if (last && A.W < 860 && now - last < 30) return;
+    var dt = last ? Math.min(50, now - last) : 16; last = now; anim.step(dt); draw(now);
+  }
   function update() {
     if (shouldRun()) { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
     else { if (raf) { cancelAnimationFrame(raf); raf = 0; } draw(performance.now() + 1e4); }
   }
   resize();
-  if (!shouldRun()) for (var i = 0; i < 300; i++) anim.step(16); // settle into a representative still frame
+  if (reduce) for (var i = 0; i < 300; i++) anim.step(16); // settle into a representative still frame
   draw(performance.now() + 1e4);
   var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { resize(); update(); }, 150); });
   document.addEventListener('themechange', function () { if (!raf) draw(performance.now() + 1e4); });
