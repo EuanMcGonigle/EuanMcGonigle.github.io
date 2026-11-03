@@ -1,6 +1,8 @@
 # Publications shown on the homepage and /publications/.
 # type: journal | preprint | thesis
 # Add new entries at the top. Links are optional.
+# Thumbnail: either `image: /images/pubs/myfigure.png` (your own figure, ~16:10)
+# or `thumb: name` to use a generated illustration in _includes/pub-thumbs/name.svg.
 
 - title: "MOPED: A moving sum method for change point detection in pairwise extremal dependence"
   authors: "E. T. McGonigle, M. Pawley, J. Richards, C. Rohrbeck"
@@ -8,6 +10,7 @@
   venue: "Extremes"
   details: "to appear"
   type: journal
+  thumb: moped
   tags: [change points, extremes]
   links:
     - { label: "Paper", url: "https://link.springer.com/article/10.1007/s10687-026-00534-x" }
@@ -19,6 +22,7 @@
   venue: "Journal of Statistical Software"
   details: "115(10)"
   type: journal
+  thumb: trendlsw-jss
   tags: [wavelets, software]
   links:
     - { label: "Paper", url: "https://doi.org/10.18637/jss.v115.i10" }
@@ -30,6 +34,7 @@
   venue: "Biometrika"
   details: "112(2): asaf024"
   type: journal
+  thumb: cptnonpar
   tags: [change points, multivariate]
   links:
     - { label: "Paper", url: "https://academic.oup.com/biomet/article/112/2/asaf024/8102811" }
@@ -41,6 +46,7 @@
   venue: "Computational Statistics and Data Analysis"
   details: "179, 107648"
   type: journal
+  thumb: tavc
   tags: [change points, multiscale]
   links:
     - { label: "Paper", url: "https://doi.org/10.1016/j.csda.2022.107648" }
@@ -52,6 +58,7 @@
   venue: "Electronic Journal of Statistics"
   details: "16(2): 4398–4448"
   type: journal
+  thumb: ejs
   tags: [wavelets, nonstationary]
   links:
     - { label: "Paper", url: "https://doi.org/10.1214/22-EJS2044" }
@@ -63,6 +70,7 @@
   venue: "Journal of Time Series Analysis"
   details: "43(6): 895–917"
   type: journal
+  thumb: jtsa
   tags: [wavelets, nonstationary]
   links:
     - { label: "Paper", url: "https://onlinelibrary.wiley.com/doi/10.1111/jtsa.12643" }
@@ -74,6 +82,7 @@
   venue: "Stat"
   details: "10(1), e351"
   type: journal
+  thumb: stat
   tags: [change points, wavelets]
   links:
     - { label: "Paper", url: "https://onlinelibrary.wiley.com/doi/10.1002/sta4.351" }
@@ -83,6 +92,7 @@
   year: 2021
   venue: "arXiv preprint"
   type: preprint
+  thumb: subspace
   tags: [change points, high-dimensional]
   links:
     - { label: "arXiv", url: "https://arxiv.org/abs/2110.04044" }
@@ -92,6 +102,7 @@
   year: 2020
   venue: "PhD Thesis, Lancaster University"
   type: thesis
+  thumb: thesis
   tags: [wavelets, nonstationary]
   links:
     - { label: "PDF", url: "https://eprints.lancs.ac.uk/id/eprint/150108/1/2020mcgoniglephd.pdf" }

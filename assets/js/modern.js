@@ -225,7 +225,7 @@
     for (var i = 0; i < series.length; i++) {
       if (!series[i].cp) continue;
       var x = x0 + i * STEP;
-      var age = Math.min(1, (now - series[i].born) / 900);
+      var age = Math.max(0, Math.min(1, (now - series[i].born) / 900));
       ctx.globalAlpha = 0.55 * age;
       ctx.strokeStyle = colors.hot;
       ctx.beginPath(); ctx.moveTo(x, small ? H * 0.12 : H * 0.6); ctx.lineTo(x, H * 0.97); ctx.stroke();
