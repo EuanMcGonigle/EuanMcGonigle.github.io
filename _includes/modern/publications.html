@@ -1,0 +1,41 @@
+{% assign pubs = site.data.publications %}
+{% assign limit = include.limit %}
+{% assign n_journal = pubs | where: "type", "journal" | size %}
+<div class="pubs" data-pubs>
+  {% unless limit %}
+  <div class="pubs__toolbar reveal">
+    <div class="chips" role="group" aria-label="Filter publications">
+      <button class="chip is-active" data-filter="all" type="button">All <span>{{ pubs | size }}</span></button>
+      <button class="chip" data-filter="journal" type="button">Journal <span>{{ n_journal }}</span></button>
+      <button class="chip" data-filter="preprint" type="button">Preprints</button>
+      <button class="chip" data-filter="thesis" type="button">Thesis</button>
+    </div>
+    <label class="search">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" placeholder="Search title, venue, co-author…" data-search aria-label="Search publications">
+    </label>
+  </div>
+  {% endunless %}
+
+  <ol class="pubs__list">
+    {% assign last_year = "" %}
+    {% for p in pubs %}
+      {% if limit and forloop.index > limit %}{% break %}{% endif %}
+      {% assign y = p.year | append: "" %}
+      <li class="pub reveal" data-type="{{ p.type }}" data-text="{{ p.title | downcase }} {{ p.authors | downcase }} {{ p.venue | downcase }} {{ p.tags | join: ' ' | downcase }}">
+        <div class="pub__year">{% if y != last_year %}{{ y }}{% endif %}</div>
+        <div class="pub__body">
+          <h3 class="pub__title">{{ p.title }}</h3>
+          <p class="pub__authors">{{ p.authors | replace: "E. T. McGonigle", "<strong>E. T. McGonigle</strong>" }}</p>
+          <p class="pub__venue"><em>{{ p.venue }}</em>{% if p.details %} · {{ p.details }}{% endif %}</p>
+          <div class="pub__meta">
+            {% for l in p.links %}<a class="tag tag--link" href="{{ l.url }}">{{ l.label }} <span aria-hidden="true">↗</span></a>{% endfor %}
+            {% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+          </div>
+        </div>
+      </li>
+      {% assign last_year = y %}
+    {% endfor %}
+  </ol>
+  <p class="pubs__empty" hidden>No publications match that search.</p>
+</div>

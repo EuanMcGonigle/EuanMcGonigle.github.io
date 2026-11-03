@@ -1,0 +1,15 @@
+<div class="cards cards--2">
+  {% for s in site.data.software %}
+  <article class="card card--pkg reveal" style="--d:{{ forloop.index0 }}">
+    <div class="card--pkg__top">
+      <span class="pkg-badge">{{ s.language }}</span>
+      <h3><code>{{ s.name }}</code></h3>
+    </div>
+    <p class="card--pkg__tagline">{{ s.tagline }}</p>
+    <p>{{ s.description }}</p>
+    <div class="pub__meta">
+      {% for l in s.links %}<a class="tag tag--link" href="{{ l.url }}">{{ l.label }} <span aria-hidden="true">↗</span></a>{% endfor %}
+    </div>
+  </article>
+  {% endfor %}
+</div>

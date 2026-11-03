@@ -1,16 +1,22 @@
 ---
-layout: archive
+layout: modern
 title: "Software"
 permalink: /software/
-author_profile: true
+excerpt: "R packages by Euan McGonigle."
 redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+{% include modern/page-head.html eyebrow="Open source" title="Software" lede="I write and maintain R packages that implement the methods from my research. Packages on CRAN can be installed with install.packages()." %}
 
-I am the author and maintainer of some R packages accompanying some of my research. These are available on CRAN from the links below. 
+<section class="section section--tight">
+  <div class="wrap">
+    <pre class="code reveal"><code><span class="c"># install from CRAN</span>
+install.packages(<span class="s">"TrendLSW"</span>)
+install.packages(<span class="s">"CptNonPar"</span>)
 
-* [CptNonPar](https://CRAN.R-project.org/package=CptNonPar): Nonparametric change point detection for multivariate time series, accompanying software for the article ["Nonparametric data segmentation in multivariate time series via joint characteristic functions"](https://academic.oup.com/biomet/article/112/2/asaf024/8102811).
-
-* [TrendLSW](https://CRAN.R-project.org/package=TrendLSW): Wavelet methods for analysing locally stationary time series, accompanying software for the articles ["Trend locally stationary wavelet processes"](https://onlinelibrary.wiley.com/doi/10.1111/jtsa.12643) and ["Modelling time-varying first and second-order structure of time series via wavelets and differencing"](https://doi.org/10.1214/22-EJS2044). See [the accompanying JSS article](https://www.jstatsoft.org/article/view/v115i10) for help on using the package.
+<span class="c"># install from GitHub</span>
+remotes::install_github(<span class="s">"EuanMcGonigle/moped"</span>)</code></pre>
+    {% include modern/software.html %}
+  </div>
+</section>

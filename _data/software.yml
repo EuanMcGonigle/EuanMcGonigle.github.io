@@ -1,0 +1,31 @@
+# R packages shown on the homepage and /software/.
+
+- name: "TrendLSW"
+  tagline: "Wavelet methods for analysing locally stationary time series"
+  description: "Estimation of time-varying trend and spectral structure in nonstationary time series. Accompanies the JTSA and EJS papers; see the JSS article for a full guide."
+  language: R
+  links:
+    - { label: "CRAN", url: "https://CRAN.R-project.org/package=TrendLSW" }
+    - { label: "JSS article", url: "https://www.jstatsoft.org/article/view/v115i10" }
+
+- name: "CptNonPar"
+  tagline: "Nonparametric change point detection for multivariate time series"
+  description: "Detects changes in the joint distribution of multivariate time series using joint characteristic functions. Accompanies the Biometrika paper."
+  language: R
+  links:
+    - { label: "CRAN", url: "https://CRAN.R-project.org/package=CptNonPar" }
+    - { label: "Paper", url: "https://academic.oup.com/biomet/article/112/2/asaf024/8102811" }
+
+- name: "moped"
+  tagline: "Change points in pairwise extremal dependence"
+  description: "Moving sum procedure for detecting change points in the extremal dependence structure of multivariate data. Accompanies the Extremes paper."
+  language: R
+  links:
+    - { label: "GitHub", url: "https://github.com/EuanMcGonigle/moped" }
+
+- name: "TAVC.seg"
+  tagline: "Robust multiscale time-average variance estimation"
+  description: "R code (source main.R) for robust estimation of the time-average variance constant, used in mean change point detection. Accompanies the CSDA paper."
+  language: R
+  links:
+    - { label: "GitHub", url: "https://github.com/EuanMcGonigle/TAVC.seg" }
