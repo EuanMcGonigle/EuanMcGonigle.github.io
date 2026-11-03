@@ -16,7 +16,7 @@ The main pages (home, publications, software, teaching) use the `modern` layout:
 
 ### Publication thumbnails
 
-Each paper can show a figure. Save it to `images/pubs/` (16:10, e.g. 1200×750 px) and add `image: /images/pubs/<name>.png` to its entry in `_data/publications.yml`. From R, `source("tools/save_thumbnail.R")` and call `save_thumbnail(plot, "<name>")`, which takes a ggplot or a function that draws a base plot. Papers without an `image:` fall back to the generated illustration named by `thumb:`.
+Each paper can show a figure. Save it to `images/pubs/` (16:10, e.g. 1200×750 px, PNG or JPG) and add `image: /images/pubs/<name>.png` to its entry in `_data/publications.yml`. Optionally add `image_full:` pointing at a larger or uncropped version, which is shown when the thumbnail is clicked. From R, `source("tools/save_thumbnail.R")` and call `save_thumbnail(plot, "<name>")`, which takes a ggplot or a function that draws a base plot. Papers without an `image:` fall back to the generated illustration named by `thumb:`.
 
 The animated hero background is a simulated nonstationary time series with a fitted piecewise-constant mean and the detected change points marked.
 

@@ -17,6 +17,7 @@ install.packages(<span class="s">"CptNonPar"</span>)
 
 <span class="c"># install from GitHub</span>
 remotes::install_github(<span class="s">"EuanMcGonigle/moped"</span>)</code></pre>
+    <h2 class="sr-only">Packages</h2>
     {% include modern/software.html %}
   </div>
 </section>

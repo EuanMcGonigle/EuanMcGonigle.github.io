@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
   <script>
     // Apply saved theme before paint to avoid a flash.
     document.documentElement.classList.add('js');
+    // If modern.js fails to load, show content instead of leaving it hidden.
+    setTimeout(function () { if (!window.__modernReady) document.documentElement.classList.remove('js'); }, 2500);
     (function () {
       try {
         var t = localStorage.getItem('theme');

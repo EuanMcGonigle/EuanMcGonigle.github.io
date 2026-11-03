@@ -9,6 +9,7 @@ excerpt: "Publications by Euan McGonigle."
 
 <section class="section section--tight">
   <div class="wrap">
+    <h2 class="sr-only">Publication list</h2>
     {% include modern/publications.html %}
   </div>
 </section>

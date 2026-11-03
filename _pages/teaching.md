@@ -9,6 +9,7 @@ excerpt: "Teaching by Euan McGonigle."
 
 <section class="section section--tight">
   <div class="wrap">
+    <h2 class="sr-only">Courses</h2>
     {% include modern/teaching.html %}
   </div>
 </section>

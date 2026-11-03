@@ -4,6 +4,7 @@
 
   var root = document.documentElement;
   root.classList.add('js');
+  window.__modernReady = true;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function store(key, val) {
@@ -17,13 +18,30 @@
     if (t === 'light' || t === 'dark') return t;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  function labelToggle() {
+    if (!toggle) return;
+    var dark = currentTheme() === 'dark';
+    toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    toggle.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
   if (toggle) {
     toggle.addEventListener('click', function () {
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      store('theme', next);
+      var system = systemDark.matches ? 'dark' : 'light';
+      if (next === system) {
+        // Back to following the system setting.
+        root.removeAttribute('data-theme');
+        try { localStorage.removeItem('theme'); } catch (e) {}
+      } else {
+        root.setAttribute('data-theme', next);
+        store('theme', next);
+      }
+      labelToggle();
       document.dispatchEvent(new Event('themechange'));
     });
+    labelToggle();
+    systemDark.addEventListener('change', function () { labelToggle(); document.dispatchEvent(new Event('themechange')); });
   }
 
   /* ---------- Mobile menu ---------- */
@@ -34,8 +52,10 @@
       var open = links.classList.toggle('is-open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    links.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') { links.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); }
+    var closeMenu = function () { links.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); };
+    links.addEventListener('click', function (e) { if (e.target.tagName === 'A') closeMenu(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && links.classList.contains('is-open')) { closeMenu(); burger.focus(); }
     });
   }
 
@@ -146,6 +166,15 @@
         if (ok) { shown++; li.classList.add('is-in'); }
       });
       if (empty) empty.hidden = shown !== 0;
+      // Show each year once, on the first visible paper of that year.
+      var prev = null;
+      items.forEach(function (li) {
+        if (li.hidden) return;
+        var yr = li.querySelector('.pub__year');
+        if (!yr) return;
+        yr.classList.toggle('is-repeat', yr.textContent === prev);
+        prev = yr.textContent;
+      });
     }
     chips.forEach(function (c) {
       c.addEventListener('click', function () {
@@ -164,11 +193,29 @@
     var lb = document.querySelector('.lightbox');
     if (!lb) return;
     lb.classList.remove('is-open');
+    setBackgroundInert(false);
     setTimeout(function () { if (lb.parentNode) lb.parentNode.removeChild(lb); }, 250);
     document.removeEventListener('keydown', onLbKey);
     if (lastFocus) lastFocus.focus();
   }
-  function onLbKey(e) { if (e.key === 'Escape') closeLightbox(); }
+  function setBackgroundInert(on) {
+    ['nav', 'main', 'footer'].forEach(function (sel) {
+      var el = sel === 'nav' ? document.getElementById('nav') : document.querySelector(sel === 'main' ? '#main' : '.footer');
+      if (!el) return;
+      if (on) { el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true'); }
+      else { el.removeAttribute('inert'); el.removeAttribute('aria-hidden'); }
+    });
+    document.body.style.overflow = on ? 'hidden' : '';
+  }
+  function onLbKey(e) {
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'Tab') {
+      // The close button is the only control in the dialog: keep focus on it.
+      e.preventDefault();
+      var c = document.querySelector('.lightbox .icon-btn');
+      if (c) c.focus();
+    }
+  }
   document.querySelectorAll('[data-lightbox]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       lastFocus = btn;
@@ -192,6 +239,7 @@
       lb.appendChild(fig); lb.appendChild(close);
       lb.addEventListener('click', function (e) { if (e.target === lb || close.contains(e.target)) closeLightbox(); });
       document.body.appendChild(lb);
+      setBackgroundInert(true);
       document.addEventListener('keydown', onLbKey);
       requestAnimationFrame(function () { lb.classList.add('is-open'); close.focus(); });
     });
@@ -206,7 +254,8 @@
   var series = [];            // {y, mu, cp}
   var colors = {};
   var seg = null;
-  var t = 0, offset = 0, running = true;
+  var t = 0, offset = 0, rafId = 0, onScreen = true;
+  var isHero = !canvas.classList.contains('hero__canvas--small');
 
   function readColors() {
     var cs = getComputedStyle(root);
@@ -320,37 +369,39 @@
 
   var lastT = 0;
   function frame(now) {
-    if (!running) return;
+    rafId = 0;
     var dt = lastT ? Math.min(64, now - lastT) : 16;
     lastT = now;
     offset += dt * 0.045; // px per ms
     while (offset >= STEP) { offset -= STEP; series.shift(); series.push(nextPoint()); }
     draw(now);
-    requestAnimationFrame(frame);
+    rafId = requestAnimationFrame(frame);
+  }
+
+  // Animate only when the canvas is on screen, the tab is visible and (for the
+  // homepage hero) the screen is wide enough for the animation to be seen.
+  function shouldRun() {
+    return !reduceMotion && onScreen && !document.hidden && !(isHero && W < 860);
+  }
+  function updateLoop() {
+    if (shouldRun()) {
+      if (!rafId) { lastT = 0; rafId = requestAnimationFrame(frame); }
+    } else {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+      draw(performance.now() + 5000);
+    }
   }
 
   readColors();
   resize();
   document.addEventListener('themechange', readColors);
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readColors);
   var rt;
-  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(resize, 120); });
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { resize(); updateLoop(); }, 120); });
 
-  if (reduceMotion) {
-    draw(performance.now() + 5000);
-  } else {
-    // pause when off-screen or tab hidden
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) {
-        var vis = en[0].isIntersecting;
-        if (vis && !running) { running = true; lastT = 0; requestAnimationFrame(frame); }
-        else if (!vis) running = false;
-      }).observe(canvas);
-    }
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) running = false;
-      else if (!running) { running = true; lastT = 0; requestAnimationFrame(frame); }
-    });
-    requestAnimationFrame(frame);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; updateLoop(); }).observe(canvas);
   }
+  document.addEventListener('visibilitychange', updateLoop);
+  document.addEventListener('themechange', function () { if (!rafId) draw(performance.now() + 5000); });
+  updateLoop();
 })();

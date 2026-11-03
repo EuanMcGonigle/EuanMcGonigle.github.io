@@ -1,7 +1,7 @@
 # Publications shown on the homepage and /publications/.
 # type: journal | preprint | thesis
 # Add new entries at the top. Links are optional.
-# Thumbnail: either `image: /images/pubs/myfigure.png` (your own figure, ~16:10)
+# Thumbnail: either `image: /images/pubs/myfigure.png` (your own figure, 16:10, e.g. 1200x750 or 720x450)
 # or `thumb: name` to use a generated illustration in _includes/pub-thumbs/name.svg.
 # Optional `image_full:` is shown when the thumbnail is clicked (e.g. the uncropped figure).
 
@@ -11,7 +11,6 @@
   venue: "Extremes"
   details: "to appear"
   type: journal
-  thumb: moped
   image: /images/pubs/moped.jpg
   image_full: /images/pubs/moped-full.jpg
   tags: [change points, extremes]
@@ -25,8 +24,8 @@
   venue: "Journal of Statistical Software"
   details: "115(10)"
   type: journal
-  thumb: trendlsw-jss
   image: /images/pubs/trendlsw-jss.jpg
+  image_full: /images/pubs/trendlsw-jss-full.jpg
   tags: [wavelets, software]
   links:
     - { label: "Paper", url: "https://doi.org/10.18637/jss.v115.i10" }
@@ -38,8 +37,8 @@
   venue: "Biometrika"
   details: "112(2): asaf024"
   type: journal
-  thumb: cptnonpar
   image: /images/pubs/cptnonpar.jpg
+  image_full: /images/pubs/cptnonpar-full.jpg
   tags: [change points, multivariate]
   links:
     - { label: "Paper", url: "https://academic.oup.com/biomet/article/112/2/asaf024/8102811" }
@@ -51,8 +50,8 @@
   venue: "Computational Statistics and Data Analysis"
   details: "179, 107648"
   type: journal
-  thumb: tavc
   image: /images/pubs/tavc.jpg
+  image_full: /images/pubs/tavc-full.jpg
   tags: [change points, multiscale]
   links:
     - { label: "Paper", url: "https://doi.org/10.1016/j.csda.2022.107648" }
@@ -64,8 +63,8 @@
   venue: "Electronic Journal of Statistics"
   details: "16(2): 4398–4448"
   type: journal
-  thumb: ejs
   image: /images/pubs/ejs.jpg
+  image_full: /images/pubs/ejs-full.jpg
   tags: [wavelets, nonstationary]
   links:
     - { label: "Paper", url: "https://doi.org/10.1214/22-EJS2044" }
@@ -77,8 +76,8 @@
   venue: "Journal of Time Series Analysis"
   details: "43(6): 895–917"
   type: journal
-  thumb: jtsa
   image: /images/pubs/jtsa.jpg
+  image_full: /images/pubs/jtsa-full.jpg
   tags: [wavelets, nonstationary]
   links:
     - { label: "Paper", url: "https://onlinelibrary.wiley.com/doi/10.1111/jtsa.12643" }
@@ -90,8 +89,8 @@
   venue: "Stat"
   details: "10(1), e351"
   type: journal
-  thumb: stat
   image: /images/pubs/stat.jpg
+  image_full: /images/pubs/stat-full.jpg
   tags: [change points, wavelets]
   links:
     - { label: "Paper", url: "https://onlinelibrary.wiley.com/doi/10.1002/sta4.351" }
@@ -101,8 +100,8 @@
   year: 2021
   venue: "arXiv preprint"
   type: preprint
-  thumb: subspace
   image: /images/pubs/subspace.jpg
+  image_full: /images/pubs/subspace-full.jpg
   tags: [change points, high-dimensional]
   links:
     - { label: "arXiv", url: "https://arxiv.org/abs/2110.04044" }
