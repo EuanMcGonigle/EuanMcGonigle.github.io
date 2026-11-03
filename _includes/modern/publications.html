@@ -24,10 +24,17 @@
       {% assign y = p.year | append: "" %}
       <li class="pub reveal" data-type="{{ p.type }}" data-text="{{ p.title | downcase }} {{ p.authors | downcase }} {{ p.venue | downcase }} {{ p.tags | join: ' ' | downcase }}">
         <div class="pub__year">{% if y != last_year %}{{ y }}{% endif %}</div>
-        <div class="pub__thumb" aria-hidden="true">
-          {% if p.image %}<img src="{{ p.image | relative_url }}" alt="" loading="lazy">
-          {% elsif p.thumb %}{% capture tpath %}pub-thumbs/{{ p.thumb }}.svg{% endcapture %}{% include {{ tpath }} %}{% endif %}
+        {% if p.image %}
+        <div class="pub__thumb pub__thumb--img">
+          <button type="button" data-lightbox="{{ p.image | relative_url }}" data-caption="{{ p.title | escape }}" aria-label="Enlarge figure from {{ p.title | escape }}">
+            <img src="{{ p.image | relative_url }}" alt="Figure from {{ p.title | escape }}" loading="lazy" width="1200" height="750">
+          </button>
         </div>
+        {% else %}
+        <div class="pub__thumb" aria-hidden="true">
+          {% if p.thumb %}{% capture tpath %}pub-thumbs/{{ p.thumb }}.svg{% endcapture %}{% include {{ tpath }} %}{% endif %}
+        </div>
+        {% endif %}
         <div class="pub__body">
           <h3 class="pub__title">{{ p.title }}</h3>
           <p class="pub__authors">{{ p.authors | replace: "E. T. McGonigle", "<strong>E. T. McGonigle</strong>" }}</p>

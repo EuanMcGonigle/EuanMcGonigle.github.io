@@ -315,7 +315,7 @@ code, pre { font-family: var(--mono); }
 .search input { border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: .93rem; width: 100%; }
 
 .pubs__list { list-style: none; margin: 0; padding: 0; }
-.pub { display: grid; grid-template-columns: 64px 176px minmax(0, 1fr); gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); align-items: start; }
+.pub { display: grid; grid-template-columns: 56px 224px minmax(0, 1fr); gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); align-items: start; }
 .pub:first-child { border-top: 0; }
 .pub[hidden] { display: none; }
 .pub__year { font: 500 .95rem/1.6 var(--mono); color: var(--accent); }
@@ -344,10 +344,23 @@ code, pre { font-family: var(--mono); }
 .thumb-svg .t-code { font: 500 7px var(--mono); fill: var(--accent); }
 .thumb-svg .t-lab { font: 500 6.5px var(--mono); fill: var(--hot); }
 .thumb-svg .t-lab--a { fill: var(--accent); }
+.pub__thumb--img { background: #fff; cursor: zoom-in; padding: 0; }
+.pub__thumb--img button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
+.pub__thumb--img button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Lightbox for publication figures */
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: 0; transition: opacity .25s var(--ease); }
+.lightbox.is-open { opacity: 1; }
+.lightbox figure { margin: 0; max-width: min(1100px, 100%); display: grid; gap: 12px; transform: scale(.97); transition: transform .3s var(--ease); }
+.lightbox.is-open figure { transform: none; }
+.lightbox img { width: 100%; height: auto; max-height: 78vh; object-fit: contain; background: #fff; border-radius: 12px; box-shadow: var(--shadow-lg); }
+.lightbox figcaption { font: 500 1rem/1.4 var(--serif); color: var(--ink); text-align: center; }
+.lightbox .icon-btn { position: absolute; top: 18px; right: 18px; background: var(--surface); }
+
 /* lines draw in as each paper scrolls into view */
 .js .pub .thumb-svg .t-obs, .js .pub .thumb-svg .t-fit { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) .15s; }
 .js .pub.is-in .thumb-svg .t-obs, .js .pub.is-in .thumb-svg .t-fit { stroke-dashoffset: 0; }
-@media (max-width: 860px) { .pub { grid-template-columns: 140px minmax(0, 1fr); } .pub__year { grid-column: 1 / -1; } .pub__year:empty { display: none; } }
+@media (max-width: 860px) { .pub { grid-template-columns: 180px minmax(0, 1fr); } .pub__year { grid-column: 1 / -1; } .pub__year:empty { display: none; } }
 @media (max-width: 640px) {
   .pub { grid-template-columns: 1fr; gap: 4px; }
   .pub__thumb { max-width: 260px; margin: 6px 0 10px; }

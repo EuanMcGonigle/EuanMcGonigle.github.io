@@ -158,6 +158,45 @@
     if (search) search.addEventListener('input', apply);
   });
 
+  /* ---------- Figure lightbox ---------- */
+  var lastFocus = null;
+  function closeLightbox() {
+    var lb = document.querySelector('.lightbox');
+    if (!lb) return;
+    lb.classList.remove('is-open');
+    setTimeout(function () { if (lb.parentNode) lb.parentNode.removeChild(lb); }, 250);
+    document.removeEventListener('keydown', onLbKey);
+    if (lastFocus) lastFocus.focus();
+  }
+  function onLbKey(e) { if (e.key === 'Escape') closeLightbox(); }
+  document.querySelectorAll('[data-lightbox]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      lastFocus = btn;
+      var lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.setAttribute('aria-label', btn.getAttribute('data-caption'));
+      var fig = document.createElement('figure');
+      var img = document.createElement('img');
+      img.src = btn.getAttribute('data-lightbox');
+      img.alt = btn.querySelector('img').alt;
+      var cap = document.createElement('figcaption');
+      cap.textContent = btn.getAttribute('data-caption');
+      var close = document.createElement('button');
+      close.className = 'icon-btn';
+      close.type = 'button';
+      close.setAttribute('aria-label', 'Close');
+      close.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      fig.appendChild(img); fig.appendChild(cap);
+      lb.appendChild(fig); lb.appendChild(close);
+      lb.addEventListener('click', function (e) { if (e.target === lb || close.contains(e.target)) closeLightbox(); });
+      document.body.appendChild(lb);
+      document.addEventListener('keydown', onLbKey);
+      requestAnimationFrame(function () { lb.classList.add('is-open'); close.focus(); });
+    });
+  });
+
   /* ---------- Hero canvas: a live nonstationary series with change points ---------- */
   var canvas = document.getElementById('hero-canvas');
   if (!canvas || !canvas.getContext) return;
