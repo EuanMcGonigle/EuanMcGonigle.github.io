@@ -33,9 +33,7 @@
           </button>
         </div>
         {% else %}
-        <div class="pub__thumb" aria-hidden="true">
-          {% if p.thumb %}{% capture tpath %}pub-thumbs/{{ p.thumb }}.svg{% endcapture %}{% include {{ tpath }} %}{% endif %}
-        </div>
+        <div class="pub__thumb pub__thumb--empty" aria-hidden="true"></div>
         {% endif %}
         <div class="pub__body">
           <h3 class="pub__title">{{ p.title }}</h3>

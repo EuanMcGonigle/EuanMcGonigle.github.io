@@ -2,7 +2,6 @@
 # type: journal | preprint | thesis
 # Add new entries at the top. Links are optional.
 # Thumbnail: either `image: /images/pubs/myfigure.png` (your own figure, 16:10, e.g. 1200x750 or 720x450)
-# or `thumb: name` to use a generated illustration in _includes/pub-thumbs/name.svg.
 # Optional `image_full:` is shown when the thumbnail is clicked (e.g. the uncropped figure).
 
 - title: "MOPED: A moving sum method for change point detection in pairwise extremal dependence"
@@ -111,7 +110,8 @@
   year: 2020
   venue: "PhD Thesis, Lancaster University"
   type: thesis
-  thumb: thesis
+  image: /images/pubs/thesis.jpg
+  image_full: /images/pubs/thesis-full.jpg
   tags: [wavelets, nonstationary]
   links:
     - { label: "PDF", url: "https://eprints.lancs.ac.uk/id/eprint/150108/1/2020mcgoniglephd.pdf" }

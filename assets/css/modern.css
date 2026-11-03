@@ -344,17 +344,8 @@ code, pre { font-family: var(--mono); }
 }
 .pub__thumb img, .pub__thumb svg { width: 100%; height: 100%; display: block; object-fit: cover; }
 .pub:hover .pub__thumb { transform: translateY(-3px) rotate(-.6deg); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
-.thumb-svg .t-obs { stroke: var(--accent); opacity: .7; }
-.thumb-svg .t-fit { stroke: var(--hot); }
-.thumb-svg .t-cp, .thumb-svg .t-frame { stroke: var(--ink-3); }
-.thumb-svg .t-dot { fill: var(--accent); opacity: .55; }
-.thumb-svg .t-dot2 { fill: var(--hot); opacity: .75; }
-.thumb-svg .t-heat { fill: var(--accent); }
-.thumb-svg .t-band { fill: var(--accent); opacity: .14; }
-.thumb-svg .t-chip { fill: var(--accent-soft); }
-.thumb-svg .t-code { font: 500 7px var(--mono); fill: var(--accent); }
-.thumb-svg .t-lab { font: 500 6.5px var(--mono); fill: var(--hot); }
-.thumb-svg .t-lab--a { fill: var(--accent); }
+.pub__thumb--empty { visibility: hidden; }
+@media (max-width: 640px) { .pub__thumb--empty { display: none; } }
 .pub__thumb--img { background: #fff; cursor: zoom-in; padding: 0; }
 .pub__thumb--img button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
 .pub__thumb--img button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -368,9 +359,6 @@ code, pre { font-family: var(--mono); }
 .lightbox figcaption { font: 500 1rem/1.4 var(--serif); color: var(--ink); text-align: center; }
 .lightbox .icon-btn { position: absolute; top: 18px; right: 18px; background: var(--surface); }
 
-/* lines draw in as each paper scrolls into view */
-.js .pub .thumb-svg .t-obs, .js .pub .thumb-svg .t-fit { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) .15s; }
-.js .pub.is-in .thumb-svg .t-obs, .js .pub.is-in .thumb-svg .t-fit { stroke-dashoffset: 0; }
 @media (max-width: 860px) { .pub { grid-template-columns: 180px minmax(0, 1fr); } .pub__year { grid-column: 1 / -1; } .pub__year.is-repeat { display: none; } }
 @media (max-width: 640px) {
   .pub { grid-template-columns: 1fr; gap: 4px; }
