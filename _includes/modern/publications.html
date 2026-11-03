@@ -26,7 +26,7 @@
         <div class="pub__year">{% if y != last_year %}{{ y }}{% endif %}</div>
         {% if p.image %}
         <div class="pub__thumb pub__thumb--img">
-          <button type="button" data-lightbox="{{ p.image | relative_url }}" data-caption="{{ p.title | escape }}" aria-label="Enlarge figure from {{ p.title | escape }}">
+          <button type="button" data-lightbox="{{ p.image_full | default: p.image | relative_url }}" data-caption="{{ p.title | escape }}" aria-label="Enlarge figure from {{ p.title | escape }}">
             <img src="{{ p.image | relative_url }}" alt="Figure from {{ p.title | escape }}" loading="lazy" width="1200" height="750">
           </button>
         </div>
